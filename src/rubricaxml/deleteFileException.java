@@ -32,11 +32,14 @@ public class deleteFileException extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(69, 90, 100));
 
         jLabel1.setText("deleteFileException");
 
         jLabel2.setText("uhm... sembra che il file non esista... controlla e riprova!");
 
+        jToggleButton1.setBackground(new java.awt.Color(28, 49, 58));
+        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Close");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

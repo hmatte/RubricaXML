@@ -31,11 +31,14 @@ public class printXMLException extends javax.swing.JFrame {
         jButton_retry = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(69, 90, 100));
 
         jLabel1.setText("printXMLException");
 
         jLabel2.setText("Error 404 File not found! Are you sure?");
 
+        jButton_retry.setBackground(new java.awt.Color(28, 49, 58));
+        jButton_retry.setForeground(new java.awt.Color(255, 255, 255));
         jButton_retry.setText("Retry!");
         jButton_retry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -40,11 +40,14 @@ public class deleteFile extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(69, 90, 100));
 
         jLabel1.setText("inserisci il nome del file da eliminare:");
 
         jLabel2.setText(".xml");
 
+        jButton1.setBackground(new java.awt.Color(28, 49, 58));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Delete it!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +55,8 @@ public class deleteFile extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(28, 49, 58));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Torna al menu principale");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +121,6 @@ public class deleteFile extends javax.swing.JFrame {
         this.setVisible(false);
         GUI guipage = new GUI();
         guipage.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -32,11 +32,14 @@ public class addElementException extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(69, 90, 100));
 
         jLabel1.setText("addElementException");
 
         jLabel2.setText("are you sure this file does exist? Try again! ");
 
+        jButton1.setBackground(new java.awt.Color(28, 49, 58));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Close");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -5,6 +5,22 @@
  */
 package rubricaxml;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
 /**
  *
  * @author matte
@@ -42,8 +58,10 @@ public class addElement extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(69, 90, 100));
 
         jLabel1.setText("addElement (or modify it if it already exist)");
 
@@ -61,10 +79,21 @@ public class addElement extends javax.swing.JFrame {
 
         jLabel8.setText(".xml");
 
+        jToggleButton1.setBackground(new java.awt.Color(28, 49, 58));
+        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("GET IN THERE!");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(28, 49, 58));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Torna al menù principale");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -84,7 +113,6 @@ public class addElement extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
                             .addComponent(jTextField2)
                             .addComponent(jTextField3)
                             .addComponent(jTextField4)
@@ -97,9 +125,14 @@ public class addElement extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +164,9 @@ public class addElement extends javax.swing.JFrame {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButton1)
+                    .addComponent(jButton1))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -139,8 +174,65 @@ public class addElement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
+        File file = new File(jTextField6.getText()+".xml");
+        try {
+            file.createNewFile();
+        } catch (IOException ex) {
+            Logger.getLogger(createFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String XMLpath = jTextField6.getText() + ".xml";
+        
+         try {
+            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(jTextField6.getText()+".xml");
+            //root.appendChild(Rubrica);
+            Element root = document.getDocumentElement();
+            Element utente = document.createElement("Utente");
+            
+            root.appendChild(utente);
+            Element id = document.createElement("id");
+            Element nome = document.createElement("Nome");
+            Element cognome = document.createElement("Cognome");
+            Element ntel = document.createElement("N telefono");
+            Element email = document.createElement("email");
+            
+            id.appendChild(document.createTextNode(jTextField1.getText()));
+            nome.appendChild(document.createTextNode(jTextField2.getText()));
+            cognome.appendChild(document.createTextNode(jTextField3.getText()));
+            ntel.appendChild(document.createTextNode(jTextField4.getText()));
+            email.appendChild(document.createTextNode(jTextField5.getText()));
+            
+            utente.appendChild(id);
+            utente.appendChild(nome);
+            utente.appendChild(cognome);
+            utente.appendChild(ntel);
+            utente.appendChild(email);
+            
+            TransformerFactory factory = TransformerFactory.newInstance();
+            Transformer transformer = factory.newTransformer();
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(new File("cdCatalog.xml"));
+            transformer.transform(domSource, streamResult);
+
+        DOMSource source = new DOMSource(document);
+            
+         } catch (ParserConfigurationException ex) {
+            Logger.getLogger(createFile.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException | IOException | TransformerException ex) {
+            Logger.getLogger(addElement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+         this.setVisible(false);
+         GUI guipage = new GUI();
+         guipage.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        GUI guipage = new GUI();
+        guipage.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +270,7 @@ public class addElement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

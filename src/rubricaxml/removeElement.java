@@ -34,20 +34,24 @@ public class removeElement extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(69, 90, 100));
 
         jLabel1.setText("removeElement");
 
         jLabel2.setText("inserisci l'id dell'elemento da eliminare:");
 
-        jTextField1.setText("n");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(28, 49, 58));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Delete it!");
 
+        jToggleButton1.setBackground(new java.awt.Color(28, 49, 58));
+        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Torna al menù principale");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +102,6 @@ public class removeElement extends javax.swing.JFrame {
         this.setVisible(false);
         GUI guipage = new GUI();
         guipage.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**

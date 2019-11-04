@@ -38,10 +38,18 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(69, 90, 100));
+        jPanel1.setForeground(new java.awt.Color(69, 90, 100));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Rubrica XML");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Huqi Matteo - 5CI");
 
+        jButton_createNew.setBackground(new java.awt.Color(28, 49, 58));
+        jButton_createNew.setForeground(new java.awt.Color(255, 255, 255));
         jButton_createNew.setText("Create a new XML file");
         jButton_createNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +57,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jButton_addElement.setBackground(new java.awt.Color(28, 49, 58));
+        jButton_addElement.setForeground(new java.awt.Color(255, 255, 255));
         jButton_addElement.setText("Add or modify element from an existing file");
         jButton_addElement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +66,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jButton_delete.setBackground(new java.awt.Color(28, 49, 58));
+        jButton_delete.setForeground(new java.awt.Color(255, 255, 255));
         jButton_delete.setText("Delete an XML file");
         jButton_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +75,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jButton_print.setBackground(new java.awt.Color(28, 49, 58));
+        jButton_print.setForeground(new java.awt.Color(255, 255, 255));
         jButton_print.setText("Print an XML file");
         jButton_print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +84,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jButton_removeElement.setBackground(new java.awt.Color(28, 49, 58));
+        jButton_removeElement.setForeground(new java.awt.Color(255, 255, 255));
         jButton_removeElement.setText("Remove element from an existing file");
         jButton_removeElement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
