@@ -134,38 +134,6 @@ public class createFile extends javax.swing.JFrame {
             // creo l'elemento root: rubrica
             Element root = document.createElement("Rubrica");
             document.appendChild(root);
- /*
-            // elemento utente
-            Element utente = document.createElement("utente");
- 
-            root.appendChild(utente);
- 
-            // set an attribute to staff element
-            Attr attr = document.createAttribute("id");
-            attr.setValue("10");
-            utente.setAttributeNode(attr);
- 
-            //you can also use staff.setAttribute("id", "1") for this
- 
-            // firstname element
-            Element firstName = document.createElement("firstname");
-            firstName.appendChild(document.createTextNode("James"));
-            utente.appendChild(firstName);
- 
-            // lastname element
-            Element lastname = document.createElement("lastname");
-            lastname.appendChild(document.createTextNode("Harley"));
-            utente.appendChild(lastname);
- 
-            // email element
-            Element email = document.createElement("email");
-            email.appendChild(document.createTextNode("james@example.org"));
-            utente.appendChild(email);
- 
-            // department elements
-            Element department = document.createElement("department");
-            department.appendChild(document.createTextNode("Human Resources"));
-            utente.appendChild(department);*/
  
             // creo il vero file XML
             //trasformo l'oggetto DOM in un file XML vero e proprio
