@@ -77,6 +77,8 @@ public class printXMLException extends javax.swing.JFrame {
     private void jButton_retryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_retryActionPerformed
         this.setAlwaysOnTop(false);
         this.setVisible(false);
+        printXML printpage = new printXML();
+        printpage.setVisible(true);
     }//GEN-LAST:event_jButton_retryActionPerformed
 
     /**

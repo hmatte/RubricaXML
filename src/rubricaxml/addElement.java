@@ -6,6 +6,7 @@
 package rubricaxml;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -20,6 +22,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
+
 
 /**
  *
@@ -172,60 +175,45 @@ public class addElement extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public Element writeTagElement(Document document, String argString, String tagString) {
+		Element tag = document.createElement(tagString);
+		tag.appendChild(document.createTextNode(argString));
+		return tag;
+	}
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        File file = new File(jTextField6.getText()+".xml");
+
         try {
-            file.createNewFile();
-        } catch (IOException ex) {
-            Logger.getLogger(createFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String XMLpath = jTextField6.getText() + ".xml";
-        
-         try {
+            File fileXML;
+            FileWriter fw;
+            String path = jTextField6.getText()+".xml"; //Path to file
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(jTextField6.getText()+".xml");
-            //root.appendChild(Rubrica);
+            Document document = documentBuilder.parse(path);
+            Element contatto;
             Element root = document.getDocumentElement();
-            Element utente = document.createElement("Utente");
             
-            root.appendChild(utente);
-            Element id = document.createElement("id");
-            Element nome = document.createElement("Nome");
-            Element cognome = document.createElement("Cognome");
-            Element ntel = document.createElement("N telefono");
-            Element email = document.createElement("email");
+            contatto = document.createElement("contatto");
+            contatto.setAttribute("id", "" + jTextField1.getText());
+            contatto.appendChild(writeTagElement(document, jTextField2.getText(), "Nome")); //append the "Nome" node with his attribute to his parent
+            contatto.appendChild(writeTagElement(document, jTextField3.getText(), "Cognome"));//append the "Cognome" node with his attribute to his parent
+            contatto.appendChild(writeTagElement(document, jTextField4.getText(), "N_telefono"));//append the "N_telefono" node with his attribute to his parent
+            contatto.appendChild(writeTagElement(document, jTextField5.getText(), "E-mail"));//append the "E-Mail" node with his attribute to his parent
             
-            id.appendChild(document.createTextNode(jTextField1.getText()));
-            nome.appendChild(document.createTextNode(jTextField2.getText()));
-            cognome.appendChild(document.createTextNode(jTextField3.getText()));
-            ntel.appendChild(document.createTextNode(jTextField4.getText()));
-            email.appendChild(document.createTextNode(jTextField5.getText()));
-            
-            utente.appendChild(id);
-            utente.appendChild(nome);
-            utente.appendChild(cognome);
-            utente.appendChild(ntel);
-            utente.appendChild(email);
-            
-            TransformerFactory factory = TransformerFactory.newInstance();
-            Transformer transformer = factory.newTransformer();
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File("cdCatalog.xml"));
+            StreamResult streamResult = new StreamResult(new File(path));
             transformer.transform(domSource, streamResult);
-
-        DOMSource source = new DOMSource(document);
             
-         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(createFile.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException | IOException | TransformerException ex) {
+            this.setVisible(false);
+            GUI guipage = new GUI();
+            guipage.setVisible(true);
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(addElement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException | ParserConfigurationException | SAXException | IOException ex) {
             Logger.getLogger(addElement.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-         this.setVisible(false);
-         GUI guipage = new GUI();
-         guipage.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
